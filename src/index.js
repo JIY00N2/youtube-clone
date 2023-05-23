@@ -1,14 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './App';
+import NotFound from './pages/NotFound';
+import Videos from './pages/Videos';
+import VideoDetail from './pages/VideoDetail';
 import reportWebVitals from './reportWebVitals';
 
+// 라우터 정의는 index나 app 아무곳에서 해도됨
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App/>,
+    errorElement: <NotFound/>,
+    children:[
+      {index: true, element: <Videos/>},
+      {path: 'videos', element: <Videos/>},
+      {path: 'videos/:keyword', element: <Videos/>},
+      {path: 'videos/watch/:videoId', element: <VideoDetail/>},
+    ]
 
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );
 
