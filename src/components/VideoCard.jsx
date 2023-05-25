@@ -6,7 +6,11 @@ export default function VideoCard({video}) {
   const {title, thumbnails, channelTitle, publishedAt} = video.snippet;
   const navigate = useNavigate();
   return (
-    <li onClick={()=>{navigate(`videos/watch/${video.id}`, {state: {video}})}}>
+    <li 
+      onClick={() => {
+        navigate(`/videos/watch/${video.id}`, {state: {video}});
+      }}
+    >
       {/* width = full */}
       <img className ='w-full' src = {thumbnails.medium.url} alt={title}></img>
       <div>
