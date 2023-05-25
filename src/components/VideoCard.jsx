@@ -5,11 +5,13 @@ export default function VideoCard({video}) {
   const {title, thumbnails, channelTitle, publishedAt} = video.snippet; 
   return (
     <li>
-      <img src = {thumbnails.medium.url} alt={title}></img>
+      {/* width = full */}
+      <img className ='w-full' src = {thumbnails.medium.url} alt={title}></img>
       <div>
-        <p>{title}</p>
-        <p>{channelTitle}</p>
-        <p>{formatAgo(publishedAt,'ko')}</p>
+        {/* my-2 = 위 아래로 margin 2 , line-clamp-2 : 줄 갯수를 최대 2줄로 제한*/}
+        <p className ='font-semibold my-2 line-clamp-2'>{title}</p>
+        <p className='text-sm opactiy-80'>{channelTitle}</p>
+        <p className='text-sm opactiy-80'>{formatAgo(publishedAt,'ko')}</p>
       </div>
     </li>
   );
